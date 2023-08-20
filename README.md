@@ -1,12 +1,20 @@
 # HTML5悬浮音乐播放器插件
 
 #### 介绍
+
+作者：小枫
+QQ：1809185784
+
 xf-MusicPlayer.js插件是一款由小枫独立开发的开源式的HTML5悬浮音乐播放器插件，由原生JS开发无任何依赖，引入两行代码就能给网页添加漂亮的音乐播放器！改播放器目前有6种不同颜色的主题样式可任意切换 + 3种获取音乐的方式！
 
 注意：该插件代码有用到ES6语法和css3新特性，如果你使用浏览器内核还是IE10以下，那请回避吧~
 
  **演示站** 
 https://www.xfabe.com/YYDS/musicPlayer/
+
+#### 展示图
+
+![xf-MusicPlayer-pic](https://player.xfyun.club/img/xf-MusicPlayer-pic.jpg)
 
 #### 获取音乐方式
 
@@ -172,3 +180,14 @@ data-localMusic属性：本地音乐，填写 playlistData.json 文件路径【�
 
 #### 保姆级视频教程
 
+ **https://www.bilibili.com/video/BV1kP411p7RK/** 
+
+
+#### 特技
+
+1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
+2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
+3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
+4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
+5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
+6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
