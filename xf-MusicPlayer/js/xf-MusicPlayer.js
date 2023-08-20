@@ -290,6 +290,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 songName.textContent = ''
                 singer.textContent = ''
                 musicPicture.alt = ''
+
                 listOfSongs.innerHTML = ''
             }
 
@@ -401,7 +402,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 let lisNum = 0
                 const playBackAndForth = async () => {
                     try {
-                        let res = await fetchData(musicUrl, 'GET')
+                        let res = await fetchData(musicUrl)
 
                         if (interfaceAndLocal === null && xfSongList !== null) {
                             res = res.playlist.tracks
@@ -455,10 +456,6 @@ window.addEventListener('DOMContentLoaded', function () {
                             let songsItem = MusicPlayer.querySelectorAll('.xf-songsItem')
                             if (songsItem.length === 0) {
                                 return
-                            }
-
-                            if (songsItem.length > 4) {
-                                outsideSongList.style.overflowY = 'auto'
                             }
 
                             let currentSongIndex = 0
