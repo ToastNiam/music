@@ -17,7 +17,7 @@ https://www.xfabe.com/YYDS/musicPlayer/
 #### 文本教程
 
 如果你用过小枫跨站音乐播放器 music.xfyun.club 再用这个插件那你不用看可直接上手。
-代码放到</body>的上面即可
+代码放到`</body>`的上面即可
 
 ```
 <!DOCTYPE html> // html5声明
