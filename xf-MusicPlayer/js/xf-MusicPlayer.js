@@ -101,8 +101,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
         const xfCssOne = 'xfplayIcon.min.css' || 'xfplayIcon.css'
         const xfCssTow = 'xf-MusicPlayer.min.css' || 'xf-MusicPlayer.css'
-        const xfplayIconCSS = `${xfDomainName}/xf-MusicPlayer/icon/${xfCssOne}`
-        const MusicPlayerCSS = `${xfDomainName}/xf-MusicPlayer/css/${xfCssTow}`
+        let xfplayIconCSS = `${xfDomainName}/xf-MusicPlayer/icon/${xfCssOne}`
+        let MusicPlayerCSS = `${xfDomainName}/xf-MusicPlayer/css/${xfCssTow}`
+
+        if (location.protocol === 'file:') {
+            xfplayIconCSS = 'https://player.xfyun.club/js/xf-MusicPlayer/icon/xfplayIcon.min.css'
+            MusicPlayerCSS = 'https://player.xfyun.club/js/xf-MusicPlayer/css/xf-MusicPlayer.min.css'
+            musicApi = 'https://api.xfyun.club'
+        }
         
         Promise.all([
             appendStylesheet(xfplayIconCSS),
