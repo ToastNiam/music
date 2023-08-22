@@ -1,3 +1,7 @@
+#xf-MusicPlayer,
+.xf-MusicPlayer {
+font-size: 16px !important;
+}
 #xf-MusicPlayer *,
 .xf-MusicPlayer * {
 margin: 0;
@@ -620,6 +624,7 @@ white-space: nowrap;
 .xf-music-pop,
 .xf-throughDisplay,
 .xf-lyricHidden {
+font-size: 16px !important;
 --color-1: #fff;
 --color-2: #000;
 --color-3: #ffc0cb;
