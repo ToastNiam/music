@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', function () {
             MusicPlayerCSS = 'https://player.xfyun.club/js/xf-MusicPlayer/css/xf-MusicPlayer.min.css'
             musicApi = 'https://api.xfyun.club'
         }
-        
+
         Promise.all([
             appendStylesheet(xfplayIconCSS),
             appendStylesheet(MusicPlayerCSS),
@@ -374,7 +374,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 playbackControl.addEventListener('click', togglePlayback)
 
-                document.addEventListener('keydown', e => {
+                window.addEventListener('keyup', e => {
+                    e = event
                     if (e.key === ' ' || e.keyCode === 32) {
                         togglePlayback()
                     }
@@ -597,6 +598,19 @@ window.addEventListener('DOMContentLoaded', function () {
 
                             nextSong.addEventListener('click', nextMusic)
                             previousSong.addEventListener('click', prevMusic)
+
+                            window.addEventListener('keyup', e => {
+                                e = event
+                                if (e.key === 'ArrowRight' || e.keyCode === 39) {
+                                    isFunctionTriggered = true
+                                    currentSongIndex = (currentSongIndex + songsItem.length + 2) % songsItem.length
+                                    updateSong(currentSongIndex)
+                                }
+
+                                if (e.key === 'ArrowRight' || e.keyCode === 37) {
+                                    prevMusic()
+                                }
+                            })
 
                             xfMusicAudio.addEventListener('timeupdate', () => {
                                 const currentTime = xfMusicAudio.currentTime
