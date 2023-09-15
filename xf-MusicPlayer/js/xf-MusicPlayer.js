@@ -462,10 +462,24 @@ window.addEventListener('DOMContentLoaded', function () {
 
                             let songsItem = MusicPlayer.querySelectorAll('.xf-songsItem')
                             if (songsItem.length === 0) {
+                                console.error('歌曲未被添加...')
                                 return
                             }
 
                             let currentSongIndex = 0
+                            
+                            const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+
+                            const randomSong = getRandomInt(0, songsItem.length)
+
+                            const songStr = MusicPlayer.getAttribute('data-random')
+                            if (songStr !== null && songStr !== 'false') {
+                                if (songStr !== '' && !isNaN(Number(songStr))) {
+                                    currentSongIndex = Number(songStr) > 0 && songStr <= songsItem.length ? Number(songStr) - 1 : 0
+                                } else {
+                                    currentSongIndex = randomSong
+                                }
+                            }
 
                             const updateSong = index => {
 
@@ -607,7 +621,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                     updateSong(currentSongIndex)
                                 }
 
-                                if (e.key === 'ArrowRight' || e.keyCode === 37) {
+                                if (e.key === 'ArrowLeft' || e.keyCode === 37) {
                                     prevMusic()
                                 }
                             })
