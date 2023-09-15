@@ -129,6 +129,19 @@ https://www.xfabe.com/YYDS/musicPlayer/
 <div id="xf-MusicPlayer"  data-themeColor="xf-girlPink"></div>
 ```
 
+6. data-random属性：打开页面随机返回一个歌曲，也可以用来定义从哪首歌开始播放
+
+随机播放示例：
+
+```
+<div id="xf-MusicPlayer" data-random="true"></div>
+```
+
+自定义播放器歌曲数值（演示第3首）示例：
+```
+<div id="xf-MusicPlayer" data-random="3"></div>
+```
+
 #### 网易云接口版属性配置（不能解析VIP歌曲）
 
 data-musicApi属性：自定义播放API接口，接口已嵌入默认接口【选填】
