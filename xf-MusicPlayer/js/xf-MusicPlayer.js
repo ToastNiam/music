@@ -513,8 +513,10 @@ window.addEventListener('DOMContentLoaded', function () {
                                     addPlaying()
                                     displayPopup(`正在播放：${itemName}`)
                                 }
-
-                                if (interfaceAndLocal === null) {
+                                
+                                const lyricsShowOrHide = MusicPlayer.getAttribute('data-lyrics')
+                                
+                                if (interfaceAndLocal === null && lyricsShowOrHide !== '0' && lyricsShowOrHide !== 'false') {
                                     xfLyric.style.backgroundColor = backgroundColors[bgIndex]
 
                                     let xfAllLyri = xfLyric.querySelector('.xf-AllLyric-box')
