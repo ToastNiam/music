@@ -176,6 +176,15 @@ data-songList属性：获取网易云歌单音乐，如果你发现歌曲播放�
 ```
 
 
+data-lyrics属性：设置播放器是否显示歌词，0为不显示，1或者不填则为显示 data-lyrics="0"【选填】
+
+示例代码：
+
+
+```
+<div id="xf-MusicPlayer"  data-lyrics="0"></div>
+```
+
  **本地音乐属性配置** 
 
 data-localMusic属性：本地音乐，填写 playlistData.json 文件路径【本地音乐必填】
