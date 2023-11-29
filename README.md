@@ -185,6 +185,17 @@ data-lyrics属性：设置播放器是否显示歌词，0为不显示，1或者�
 <div id="xf-MusicPlayer"  data-lyrics="0"></div>
 ```
 
+
+
+data-randomSongList属性：随机切换 热歌榜，新歌榜，原创榜，飙升榜的音乐 data-randomSongList="1" 或者不跟参数【选填】
+
+示例代码：
+
+
+```
+<div id="xf-MusicPlayer"  data-randomSongList="1"></div>
+```
+
  **本地音乐属性配置** 
 
 data-localMusic属性：本地音乐，填写 playlistData.json 文件路径【本地音乐必填】
