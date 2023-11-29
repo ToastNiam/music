@@ -321,7 +321,15 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            const songChart = MusicPlayer.getAttribute('data-songChart') || '热歌榜'
+            let songChart = MusicPlayer.getAttribute('data-songChart') || '热歌榜'
+
+            const randomSongList = MusicPlayer.getAttribute('data-randomSongList')
+            if (randomSongList === '' || randomSongList === '1' || randomSongList === 'true') {
+                let SongListArr = ['热歌榜', '新歌榜', '原创榜', '飙升榜']
+                songChart = SongListArr[Math.floor(Math.random() * SongListArr.length)]
+            }
+
+            console.log(`%c 正在播放${songChart}的歌曲~`, 'color: #b3c4ec;')
 
             const musicUrl = musicLinks()
 
