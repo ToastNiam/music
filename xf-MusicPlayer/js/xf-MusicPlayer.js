@@ -1,6 +1,6 @@
 "use strict";
 window.addEventListener('DOMContentLoaded', function () {
-    var playerEle = document.querySelectorAll('#xf-MusicPlayer, .xf-MusicPlayer')
+    var playerEle = document.querySelectorAll('#xf-MusicPlayer')
     if (playerEle.length === 0) {
         return
     }
@@ -180,6 +180,11 @@ window.addEventListener('DOMContentLoaded', function () {
             const themeStyle = MusicPlayer.getAttribute('data-themeColor')
             themeStyle === null ? MusicPlayerMain.classList.add('xf-original') : MusicPlayerMain.classList.add(themeStyle)
 
+            const bottomHeight = MusicPlayer.getAttribute('data-bottomHeight')
+            if (bottomHeight) {
+                MusicPlayerMain.style.bottom = bottomHeight
+            }
+            
             const lazyLoadImages = () => {
                 const images = playerBody.querySelectorAll('img[data-musicLjz-src]')
 
@@ -521,7 +526,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                     addPlaying()
                                     displayPopup(`正在播放：${itemName}`)
                                 }
-                                
+
                                 const lyricsShowOrHide = MusicPlayer.getAttribute('data-lyrics')
                                 
                                 if (interfaceAndLocal === null && lyricsShowOrHide !== '0' && lyricsShowOrHide !== 'false') {
@@ -794,8 +799,8 @@ window.addEventListener('DOMContentLoaded', function () {
             xfMusicAudio.remove()
         }
     }
-    const message = '本站自豪的采用小枫音乐播放器'
-    const description = 'https://music.xfyun.club/'
+    const message = '小枫博客网'
+    const description = 'https://www.xfabe.com/'
 
     const printStyle = ['padding: 5px 10px; border-radius: 5px 0 0 5px; background-color: #8b52ec; font-weight: bold;', 'padding: 5px 10px; border-radius: 0 5px 5px 0; background-color: #a17eff; font-weight: bold;']
 
