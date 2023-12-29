@@ -163,9 +163,7 @@ new Vue({
             { link: 'http://idc.tax/', text: '稳定云服务器', bg: 'primary' },
             { link: 'http://idc.52xk.top', text: '星空云', bg: 'success' },
             { link: 'https://copilot.maojiucloud.cn', text: 'Github Copilot激活工具', bg: 'info' },
-            { link: 'https://login.xiaoying.love/', text: '小樱云端', bg: 'warning' },
-            { link: 'http://www.tsycdn.com', text: '蓝易云CDN', bg: 'danger' },
-            // { link: 'JavaScript:;', text: '小枫网络', bg: 'dark' }
+            { link: 'https://login.xiaoying.love/', text: '小樱云端', bg: 'warning' }
         ]
         
         this.sponsor = this.shuffleArray(arr)
