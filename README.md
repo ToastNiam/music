@@ -9,8 +9,10 @@ xf-MusicPlayer.js插件是一款由小枫独立开发的开源式的HTML5悬浮�
 
 注意：该插件代码有用到ES6语法和css3新特性，如果你使用浏览器内核还是IE10以下，那请回避吧~
 
- **演示站** 
-https://www.xfabe.com/YYDS/musicPlayer/
+## 一键生成播放器
+#### https://musicplayer.xfyun.club/
+
+![输入图片说明](player.jpg)
 
 #### 展示图
 
