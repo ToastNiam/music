@@ -105,7 +105,7 @@ new Vue({
                 return
             })
 
-            const res = handover('data-themeColor', theme) + handover(' xf-bottomHeight', playerHeight) + handover(' xf-songChart', songList) + handover(' data-songList', songId) + arr1.join(' ') + arr2.join(' ')
+            const res = handover('data-themeColor', theme) + handover(' data-bottomHeight', playerHeight) + handover(' xf-songChart', songList) + handover(' data-songList', songId) + arr1.join(' ') + arr2.join(' ')
 
             this.config = `<div id="xf-MusicPlayer" data-cdnName="https://player.xfyun.club/js"  ${res}></div>\n<script src="https://player.xfyun.club/js/xf-MusicPlayer/js/xf-MusicPlayer.min.js"></script>\n${cherry}`
         },
