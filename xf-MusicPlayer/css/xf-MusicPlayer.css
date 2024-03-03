@@ -379,6 +379,11 @@
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-bottomControl .xf-progressBar .xf-totalAudioProgress .xf-audioProgress {
   position: relative;
   background-color: var(--playerColor-6);
+  transition: width 0.35s;
+  -webkit-transition: width 0.35s;
+  -moz-transition: width 0.35s;
+  -ms-transition: width 0.35s;
+  -o-transition: width 0.35s;
 }
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-bottomControl .xf-progressBar .xf-totalAudioProgress .xf-audioProgress::after {
   content: '';
