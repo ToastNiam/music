@@ -76,10 +76,10 @@ new Vue({
             let cherry = ''
             this.allSet.ck.forEach(item => {
                 const { id, checked, data } = item
-
-                if (id !== 3 && checked) {
+                console.log(data)
+                if (id !== 4 && checked) {
                     arr1.push(data)
-                } else if (id === 3 && checked) {
+                } else if (id === 4 && checked) {
                     cherry = data
                 } else {
                     return 
