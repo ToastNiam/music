@@ -16,15 +16,15 @@ window.addEventListener('DOMContentLoaded', function () {
         ({}).toString.call({ ...{} }) !== '[object Object]' ||
         Array.isArray([]) !== true
     ) {
-        this.alert('当前浏览器不支持解析 ES6 语法，无法使用“xf-MusicPlayer”插件，请升级您的浏览器！')
-        window.location.href = 'http://support.dmeng.net/upgrade-your-browser.html?referrer=' + encodeURIComponent(window.location.href)
+        alert('当前浏览器不支持解析 ES6 语法, 无法使用“xf-MusicPlayer”插件, 请升级您的浏览器!')
+        window.location.href = 'https://support.dmeng.net/upgrade-your-browser.html?referrer=' + encodeURIComponent(window.location.href)
         return
     }
 
     const xfHead = document.head
     const playerBody = document.body
-
     const metaViewport = document.querySelector('meta[name="viewport"]')
+
     if (!metaViewport) {
         let newMeta = document.createElement('meta')
         newMeta.setAttribute('name', 'viewport')
@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function () {
         MusicPlayer.splice(1)
     }
     MusicPlayer = MusicPlayer[0]
-
+    
     let interfaceAndLocal = MusicPlayer.getAttribute('data-localMusic')
 
     const xfSongList = MusicPlayer.getAttribute('data-songList')
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
         musicApi = `${location.protocol}//api.xfyun.club`
     }
 
-    if (musicApi.slice(-4) === 'null' && interfaceAndLocal === null && xfSongList === null) {
+    if (musicApi === '' && interfaceAndLocal === null && xfSongList === null) {
         this.alert('请输入音乐API域名')
         return
     }
@@ -69,7 +69,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
         const removeDotAndSlash = str => str.replace(/(^[^a-zA-Z0-9]+)|([^a-zA-Z0-9]+$)/g, '')
         const filePath = MusicPlayer.getAttribute('data-filePath')
-
         if (filePath !== null) {
             xfDomainName += `/${removeDotAndSlash(filePath)}`
         }
@@ -78,7 +77,7 @@ window.addEventListener('DOMContentLoaded', function () {
             const link = document.createElement('link')
             link.rel = 'stylesheet'
             link.href = href
-            
+
             if (cdnName !== null && cdnName !== '') {
                 return xfHead.appendChild(link)
             } else {
@@ -99,8 +98,8 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        const xfCssOne = 'xfplayIcon.min.css' || 'xfplayIcon.css'
-        const xfCssTow = 'xf-MusicPlayer.min.css' || 'xf-MusicPlayer.css'
+        const xfCssOne = 'xfplayIcon.css'
+        const xfCssTow = 'xf-MusicPlayer.css'
         let xfplayIconCSS = `${xfDomainName}/xf-MusicPlayer/icon/${xfCssOne}`
         let MusicPlayerCSS = `${xfDomainName}/xf-MusicPlayer/css/${xfCssTow}`
 
@@ -109,7 +108,7 @@ window.addEventListener('DOMContentLoaded', function () {
             MusicPlayerCSS = 'https://player.xfyun.club/js/xf-MusicPlayer/css/xf-MusicPlayer.min.css'
             musicApi = 'https://api.xfyun.club'
         }
-
+        
         Promise.all([
             appendStylesheet(xfplayIconCSS),
             appendStylesheet(MusicPlayerCSS),
@@ -143,39 +142,38 @@ window.addEventListener('DOMContentLoaded', function () {
             const xfAudio = document.createElement('audio')
             xfAudio.id = 'xf-musicAudio'
             playerBody.appendChild(xfAudio)
-
             const xfMusicAudio = document.getElementById('xf-musicAudio')
             xfMusicAudio.controls = 0
-
             if (interfaceAndLocal === null) {
                 characterToElement(lyricStr, playerBody)
             }
-
+            
             const setTimeoutPromise = delay => new Promise(resolve => setTimeout(resolve, delay))
 
             const playMusic = () => xfMusicAudio.play().catch(error => console.warn(`浏览器默认限制了自动播放：${error}`))
 
             const pauseMusic = () => xfMusicAudio.pause()
 
-            const MusicPlayerMain = MusicPlayer.querySelector('.xf-MusicPlayer-Main')
-            ,switchPlayer = MusicPlayer.querySelector('.xf-switchPlayer')
-            ,switchArrow = switchPlayer.querySelector('.icon-jiantou2')
-            ,musicPicture = MusicPlayer.querySelector('.xf-musicPicture')
-            ,songName = MusicPlayer.querySelector('.xf-songName')
-            ,singer = MusicPlayer.querySelector('.xf-singer')
-            ,previousSong = MusicPlayer.querySelector('.xf-previousSong')
-            ,playbackControl = MusicPlayer.querySelector('.xf-playbackControl')
-            ,pause = playbackControl.querySelector('.xf-pause')
-            ,playBack = playbackControl.querySelector('.xf-playBack')
-            ,nextSong = MusicPlayer.querySelector('.xf-nextSong')
-            ,audioFrequency = MusicPlayer.querySelector('.xf-audioFrequency')
-            ,totalAudioProgress = MusicPlayer.querySelector('.xf-totalAudioProgress')
-            ,audioProgress = MusicPlayer.querySelector('.xf-audioProgress')
-            ,playlistBtn = MusicPlayer.querySelector('.xf-playlistBtn')
-            ,outsideSongList = MusicPlayer.querySelector('.xf-outsideSongList')
-            ,listOfSongs = MusicPlayer.querySelector('.xf-listOfSongs')
-            ,musicalNote = MusicPlayer.querySelectorAll('.xf-musicalNote')
-            ,xfLyric = playerBody.querySelector('#xf-lyric')
+            const getEle = dom => MusicPlayer.querySelector(dom)
+                , MusicPlayerMain = getEle('.xf-MusicPlayer-Main')
+                , switchPlayer = getEle('.xf-switchPlayer')
+                , switchArrow = switchPlayer.querySelector('.icon-jiantou2')
+                , musicPicture = getEle('.xf-musicPicture')
+                , songName = getEle('.xf-songName')
+                , singer = getEle('.xf-singer')
+                , previousSong = getEle('.xf-previousSong')
+                , playbackControl = getEle('.xf-playbackControl')
+                , pause = playbackControl.querySelector('.xf-pause')
+                , playBack = playbackControl.querySelector('.xf-playBack')
+                , nextSong = getEle('.xf-nextSong')
+                , audioFrequency = getEle('.xf-audioFrequency')
+                , totalAudioProgress = getEle('.xf-totalAudioProgress')
+                , audioProgress = getEle('.xf-audioProgress')
+                , playlistBtn = getEle('.xf-playlistBtn')
+                , outsideSongList = getEle('.xf-outsideSongList')
+                , listOfSongs = getEle('.xf-listOfSongs')
+                , musicalNote = MusicPlayer.querySelectorAll('.xf-musicalNote')
+                , xfLyric = playerBody.querySelector('#xf-lyric')
 
             const themeStyle = MusicPlayer.getAttribute('data-themeColor')
             themeStyle === null ? MusicPlayerMain.classList.add('xf-original') : MusicPlayerMain.classList.add(themeStyle)
@@ -184,18 +182,15 @@ window.addEventListener('DOMContentLoaded', function () {
             if (bottomHeight) {
                 MusicPlayerMain.style.bottom = bottomHeight
             }
-            
+
             const lazyLoadImages = () => {
                 const images = playerBody.querySelectorAll('img[data-musicLjz-src]')
-
                 const observer = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             const img = entry.target
                             const src = img.getAttribute('data-musicLjz-src')
-
                             img.setAttribute('src', src)
-
                             img.onload = () => {
                                 observer.unobserve(img)
                                 img.removeAttribute('data-musicLjz-src')
@@ -232,8 +227,14 @@ window.addEventListener('DOMContentLoaded', function () {
             }
 
             const backgroundColors = ['rgba(85, 0, 255, .35)', 'rgba(0, 225, 255, .35)', 'rgba(255, 165, 0, .35)', 'rgba(0, 100, 0, .35)', 'rgba(80, 0, 0, .35)', 'rgba(255, 192, 203, .35)']
-            const themeIndex = { 'xf-original': 0, 'xf-sky': 1, 'xf-orange': 2, 'xf-darkGreen': 3, 'xf-wineRed': 4, 'xf-girlPink': 5 }
-
+            const themeIndex = {
+                'xf-original': 0,
+                'xf-sky': 1,
+                'xf-orange': 2,
+                'xf-darkGreen': 3,
+                'xf-wineRed': 4,
+                'xf-girlPink': 5
+            }
             const bgIndex = themeIndex[themeStyle] ?? 0
 
             let xfMusicPop
@@ -248,25 +249,16 @@ window.addEventListener('DOMContentLoaded', function () {
                     xfMusicPop.classList.add('xf-music-pop')
                     playerBody.appendChild(xfMusicPop)
                 }
-
                 xfMusicPop.textContent = musicName
-
                 const musicPopStyle = xfMusicPop.style
-
                 const randomColor = backgroundColors[bgIndex]
-
-                Object.assign(musicPopStyle, {
-                    backgroundColor: randomColor
-                })
-
+                Object.assign(musicPopStyle, { backgroundColor: randomColor })
                 isAnimationInProgress = 1
-
                 musicPopStyle.left = '-100%'
                 await setTimeoutPromise(500)
                 musicPopStyle.left = 0
                 await setTimeoutPromise(2500)
                 musicPopStyle.left = '-100%'
-
                 isAnimationInProgress = 0
             }
 
@@ -301,7 +293,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 songName.textContent = ''
                 singer.textContent = ''
                 musicPicture.alt = ''
-
                 listOfSongs.innerHTML = ''
             }
 
@@ -334,7 +325,11 @@ window.addEventListener('DOMContentLoaded', function () {
                 songChart = SongListArr[Math.floor(Math.random() * SongListArr.length)]
             }
 
-            console.log(`%c 正在播放${songChart}的歌曲~`, 'color: #b3c4ec;')
+            if (interfaceAndLocal) {
+                songChart = '本地'
+            }
+
+            console.log(`%c 正在播放${songChart}歌单~`, 'color: #b3c4ec;')
 
             const musicUrl = musicLinks()
 
@@ -460,16 +455,50 @@ window.addEventListener('DOMContentLoaded', function () {
                             })
                         }
 
-                        checkSongsItemLength().then(async waitTime => {
+                        const setCookie = (name, value, days) => {
+                            const date = new Date()
+                            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
+                            const expires = `expires=${date.toUTCString()}`
+                            document.cookie = `${name}=${value}; ${expires}; path=/`
+                        }
 
+                        const getCookie = name => {
+                            const cookieName = `${name}=`
+                            const cookies = document.cookie.split(';')
+                            for (let cookie of cookies) {
+                                while (cookie.charAt(0) === ' ') {
+                                    cookie = cookie.substring(1)
+                                }
+                                if (cookie.indexOf(cookieName) === 0) {
+                                    return cookie.substring(cookieName.length, cookie.length)
+                                }
+                            }
+                            return null
+                        }
+                        const deleteCookie = name => document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                        const cookieName = 'xf-MusicPlayer'
+                        const memoryPlayback = MusicPlayer.getAttribute('data-memory')
+                        let cookieData = null
+                        const rsCookie = getCookie(cookieName)
+                        const detectionCookies = callback => {
+                            if (memoryPlayback === '1' || memoryPlayback === 'true') {
+                                callback()
+                            } else {
+                                if (rsCookie) {
+                                    deleteCookie(cookieName)
+                                }
+                            }
+                        }
+
+                        checkSongsItemLength().then(async waitTime => {
                             await setTimeoutPromise(waitTime)
 
                             if (waitTime <= 100) {
-                                console.log(`%c 播放器接口加载耗时：${waitTime}ms`, 'color: #60a060')
+                                console.log(`%c 播放器接口加载耗时【正常】：${waitTime}ms`, 'color: #60a060')
                             } else if (waitTime <= 5000) {
-                                console.log(`%c 播放器接口加载耗时：${waitTime}ms`, 'color: #ffb87a')
+                                console.log(`%c 播放器接口加载耗时【稍慢】：${waitTime}ms`, 'color: #ffb87a')
                             } else {
-                                console.error(`%c 播放器接口加载超时！`, 'color: #a51212')
+                                console.error(`%c 播放器接口加载异常！`, 'color: #a51212')
                                 MusicPlayer.remove()
                             }
 
@@ -480,7 +509,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             }
 
                             let currentSongIndex = 0
-                            
+
                             const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
                             const randomSong = getRandomInt(0, songsItem.length)
@@ -494,11 +523,22 @@ window.addEventListener('DOMContentLoaded', function () {
                                 }
                             }
 
+                            detectionCookies(() => {
+                                if (rsCookie) {
+                                    const { musicId } = JSON.parse(rsCookie)
+                                    currentSongIndex = musicId > res.length ? 0 : musicId
+                                } else {
+                                    cookieData = {
+                                        musicId: 0,
+                                        musicTime: 0
+                                    }
+                                    setCookie(cookieName, JSON.stringify(cookieData), 30)
+                                }
+                            })
+
                             const updateSong = index => {
-
                                 MusicPlayerMain.style.opacity = 1
-
-                                let eleInExecution
+                                let eleInExecution = ''
                                 songsItem.forEach((ele, i) => {
                                     ele.classList.toggle('xf-inExecution', i === index)
                                     const filteredinExecution = Array.from(songsItem).filter(ele => ele.classList.contains('xf-inExecution'))
@@ -528,7 +568,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                 }
 
                                 const lyricsShowOrHide = MusicPlayer.getAttribute('data-lyrics')
-                                
+
                                 if (interfaceAndLocal === null && lyricsShowOrHide !== '0' && lyricsShowOrHide !== 'false') {
                                     xfLyric.style.backgroundColor = backgroundColors[bgIndex]
 
@@ -605,16 +645,28 @@ window.addEventListener('DOMContentLoaded', function () {
 
                             updateSong(currentSongIndex)
 
+                            const setCk = id => {
+                                detectionCookies(() => {
+                                    cookieData = {
+                                        musicId: id,
+                                        musicTime: 0
+                                    }
+                                    setCookie(cookieName, JSON.stringify(cookieData), 30)
+                                })
+                            }
+
                             const prevMusic = () => {
                                 isFunctionTriggered = true
                                 currentSongIndex = (currentSongIndex - 1 + songsItem.length) % songsItem.length
                                 updateSong(currentSongIndex)
+                                setCk(currentSongIndex)
                             }
 
                             const nextMusic = () => {
                                 isFunctionTriggered = true
                                 currentSongIndex = (currentSongIndex + 1) % songsItem.length
                                 updateSong(currentSongIndex)
+                                setCk(currentSongIndex)
                             }
 
                             songsItem.forEach((item, index) => {
@@ -622,6 +674,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                     isFunctionTriggered = true
                                     currentSongIndex = index
                                     updateSong(currentSongIndex)
+                                    setCk(currentSongIndex)
                                 })
                             })
 
@@ -634,6 +687,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                     isFunctionTriggered = true
                                     currentSongIndex = (currentSongIndex + songsItem.length + 2) % songsItem.length
                                     updateSong(currentSongIndex)
+                                    setCk(currentSongIndex)
                                 }
 
                                 if (e.key === 'ArrowLeft' || e.keyCode === 37) {
@@ -642,16 +696,39 @@ window.addEventListener('DOMContentLoaded', function () {
                             })
 
                             xfMusicAudio.addEventListener('timeupdate', () => {
-                                const currentTime = xfMusicAudio.currentTime
                                 const duration = xfMusicAudio.duration
+                                const currentTime = xfMusicAudio.currentTime
                                 const progress = (currentTime / duration) * 100
 
                                 audioProgress.style.width = `${progress}%`
 
+                                detectionCookies(() => {
+                                    cookieData = {
+                                        musicId: currentSongIndex,
+                                        musicTime: xfMusicAudio.currentTime
+                                    }
+                                    setCookie(cookieName, JSON.stringify(cookieData), 30)
+                                })
                                 if (progress === 100) {
                                     nextMusic()
                                 }
                             })
+
+                            const loadedMetadataHandler = () => {
+                                detectionCookies(() => {
+                                    if (!rsCookie) {
+                                        return
+                                    }
+                                    const { musicTime } = JSON.parse(rsCookie)
+                                    const duration = xfMusicAudio.duration
+                                    xfMusicAudio.currentTime = musicTime >= duration ? 0 : musicTime
+                                    playMusic()
+                                })
+
+                                xfMusicAudio.removeEventListener('loadedmetadata', loadedMetadataHandler)
+                            }
+
+                            xfMusicAudio.addEventListener('loadedmetadata', loadedMetadataHandler)
 
                             const currentMusic = () => {
                                 if (musicPicture.src === "" || songName.textContent === "") {
@@ -687,7 +764,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 let isSliding = false
                 const startSlide = e => {
-                    isSliding = true
+                    isSliding = true 
                     slide(e)
                     playMusic()
                     addPlaying()
@@ -799,10 +876,13 @@ window.addEventListener('DOMContentLoaded', function () {
             xfMusicAudio.remove()
         }
     }
-    const message = '小枫博客网'
+    const message = '小枫网络'
     const description = 'https://www.xfabe.com/'
 
-    const printStyle = ['padding: 5px 10px; border-radius: 5px 0 0 5px; background-color: #8b52ec; font-weight: bold;', 'padding: 5px 10px; border-radius: 0 5px 5px 0; background-color: #a17eff; font-weight: bold;']
+    const printStyle = [
+        'padding: 5px 10px; border-radius: 5px 0 0 5px; background-color: #8b52ec; font-weight: bold;',
+        'padding: 5px 10px; border-radius: 0 5px 5px 0; background-color: #a17eff; font-weight: bold;'
+    ]
 
     console.log(`%c${message}%c${description}`, printStyle[0], printStyle[1])
 })
