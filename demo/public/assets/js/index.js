@@ -14,8 +14,9 @@ new Vue({
                 ],
                 ck: [
                     { id: 1, title: '自动弹出', msg: '开启后播放器自动淡出', checked: false, data: 'data-fadeOutAutoplay' },
-                    { id: 2, title: '随机播放', msg: '开启后播放器会随机播放一首歌', checked: false, data: 'data-random="true"' },
-                    { id: 3, title: '樱花代码', msg: '开启后网页会添加段樱花代码', checked: false, data: '<script src="https://player.xfyun.club/js/yinghua.js"></script>' }
+                    { id: 2, title: '记忆播放', msg: '开启后将实现记忆播放功能，请勿和随机歌榜, 随机音乐使用', checked: false, data: 'data-memory="1"' },
+                    { id: 3, title: '随机播放', msg: '开启后播放器会随机播放一首歌', checked: false, data: 'data-random="true"' },
+                    { id: 4, title: '樱花代码', msg: '开启后网页会添加段樱花代码', checked: false, data: '<script src="https://player.xfyun.club/js/yinghua.js"></script>' }
                 ],
             },
             wy: {
@@ -105,7 +106,7 @@ new Vue({
                 return
             })
 
-            const res = handover('data-themeColor', theme) + handover(' data-bottomHeight', playerHeight) + handover(' xf-songChart', songList) + handover(' data-songList', songId) + arr1.join(' ') + arr2.join(' ')
+            const res = handover('data-themeColor', theme) + handover(' data-bottomHeight', playerHeight) + handover(' data-songChart', songList) + handover(' data-songList', songId) + arr1.join(' ') + arr2.join(' ')
 
             this.config = `<div id="xf-MusicPlayer" data-cdnName="https://player.xfyun.club/js"  ${res}></div>\n<script src="https://player.xfyun.club/js/xf-MusicPlayer/js/xf-MusicPlayer.min.js"></script>\n${cherry}`
         },
@@ -145,8 +146,8 @@ new Vue({
         },
         shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1))
-                    ;[array[i], array[j]] = [array[j], array[i]]
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]
             }
             return array
         }
@@ -163,7 +164,8 @@ new Vue({
             { link: 'http://idc.tax/', text: '稳定云服务器', bg: 'primary' },
             { link: 'http://idc.52xk.top', text: '星空云', bg: 'success' },
             { link: 'https://copilot.maojiucloud.cn', text: 'Github Copilot激活工具', bg: 'info' },
-            { link: 'https://login.xiaoying.love/', text: '小樱云端', bg: 'warning' }
+            { link: 'https://login.xiaoying.love', text: '小樱云端', bg: 'warning' },
+            { link: 'https://g.9o3.cn', text: '源官网', bg: 'danger' }
         ]
         
         this.sponsor = this.shuffleArray(arr)
