@@ -144,6 +144,20 @@ xf-MusicPlayer.js插件是一款由小枫独立开发的开源式的HTML5悬浮�
 <div id="xf-MusicPlayer" data-random="3"></div>
 ```
 
+7. data-bottomHeight属性: 设置播放器距离底部的高度 (初始值是2em)
+
+示例代码:
+```
+<div id="xf-MusicPlayer" data-bottomHeight="100px"></div>
+```
+
+8. data-memory属性: 设置音乐记忆播放
+
+示例代码:
+```
+<div id="xf-MusicPlayer" data-memory="1"></div>
+```
+
 #### 网易云接口版属性配置（不能解析VIP歌曲）
 
 data-musicApi属性：自定义播放API接口，接口已嵌入默认接口【选填】
