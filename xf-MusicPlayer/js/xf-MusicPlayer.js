@@ -569,6 +569,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
                                 const lyricsShowOrHide = MusicPlayer.getAttribute('data-lyrics')
 
+                                if (lyricsShowOrHide === '0' || lyricsShowOrHide === 'false') {
+                                    xfLyric.style.display = 'none'
+                                }
+
                                 if (interfaceAndLocal === null && lyricsShowOrHide !== '0' && lyricsShowOrHide !== 'false') {
                                     xfLyric.style.backgroundColor = backgroundColors[bgIndex]
 
