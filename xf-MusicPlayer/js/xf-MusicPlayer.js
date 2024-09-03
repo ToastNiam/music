@@ -571,6 +571,23 @@ window.addEventListener('DOMContentLoaded', function () {
 
                                 if (lyricsShowOrHide === '0' || lyricsShowOrHide === 'false') {
                                     xfLyric.style.display = 'none'
+                                    return
+                                }
+
+                                function hasScrollbar() {
+                                    return playerBody.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
+                                }
+
+                                if (hasScrollbar()) {
+                                    document.addEventListener('scroll', () => {
+                                        if ((window.innerHeight + window.scrollY) >= playerBody.offsetHeight) {
+                                            xfLyric.classList.add('xf-lyricHidden')
+                                            xfLyric.classList.remove('xf-lyricShow')
+                                        } else {
+                                            xfLyric.classList.add('xf-lyricShow')
+                                            xfLyric.classList.remove('xf-lyricHidden')
+                                        }
+                                    })
                                 }
 
                                 if (interfaceAndLocal === null && lyricsShowOrHide !== '0' && lyricsShowOrHide !== 'false') {
