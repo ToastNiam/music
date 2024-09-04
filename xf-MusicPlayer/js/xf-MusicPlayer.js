@@ -580,6 +580,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
                                 if (hasScrollbar()) {
                                     document.addEventListener('scroll', () => {
+                                        if (xfMusicAudio.paused) {
+                                            return
+                                        }
                                         if ((window.innerHeight + window.scrollY) >= playerBody.offsetHeight) {
                                             xfLyric.classList.add('xf-lyricHidden')
                                             xfLyric.classList.remove('xf-lyricShow')
